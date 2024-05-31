@@ -2,12 +2,26 @@ package Domain;
 
 import java.util.Objects;
 
-public class Produs extends Entity<Long>{
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+
+@Entity
+@Table( name = "products" )
+public class Produs extends Domain.Entity<Long>{
     private double pret;
     private String nume;
     private String descriere;
     private int cantitate;
 
+    public Produs(){
+        id=0L;
+        pret=0;
+        nume=descriere="";
+        cantitate=0;
+    }
     public Produs(double pret, String nume, String descriere, int cantitate) {
         this.pret = pret;
         this.nume = nume;
@@ -15,6 +29,17 @@ public class Produs extends Entity<Long>{
         this.cantitate = cantitate;
     }
 
+    @Id
+    @GeneratedValue(generator="increment")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Column(name = "pret")
     public double getPret() {
         return pret;
     }
@@ -23,6 +48,7 @@ public class Produs extends Entity<Long>{
         this.pret = pret;
     }
 
+    @Column(name = "nume")
     public String getNume() {
         return nume;
     }
@@ -31,6 +57,7 @@ public class Produs extends Entity<Long>{
         this.nume = nume;
     }
 
+    @Column(name = "descriere")
     public String getDescriere() {
         return descriere;
     }
@@ -39,6 +66,7 @@ public class Produs extends Entity<Long>{
         this.descriere = descriere;
     }
 
+    @Column(name = "cantitate")
     public int getCantitate() {
         return cantitate;
     }

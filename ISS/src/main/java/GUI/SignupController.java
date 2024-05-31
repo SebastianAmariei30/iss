@@ -35,7 +35,7 @@ public class SignupController {
             MessageAlert.showErrorMessage(null,"This username already exists");
             return;
         }
-        service.addAgent(textFieldUser.getText(),textFieldPass.getText(),birthDate.getValue());
+        service.addAgent(textFieldUser.getText(),textFieldPass.getText(),birthDate.getValue().toString());
         MessageAlert.showMessage(null, Alert.AlertType.INFORMATION, "Signup", "Account created");
         stage.close();
     }

@@ -1,5 +1,7 @@
 import GUI.StartController;
 import Repository.AgentDBRepository;
+import Repository.ComandaDBRepository;
+import Repository.ComandaRepository;
 import Repository.ProdusDBRepository;
 import Service.Service;
 import javafx.application.Application;
@@ -27,9 +29,10 @@ public class Main extends Application {
             System.out.println("Cannot find bd.config " + e);
         }
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("start.fxml"));
-        AgentDBRepository repoa = new AgentDBRepository(serverProps);
-        ProdusDBRepository repop = new ProdusDBRepository(serverProps);
-        Service service = new Service(repoa, repop);
+        AgentDBRepository repoa = new AgentDBRepository();
+        ProdusDBRepository repop = new ProdusDBRepository();
+        ComandaDBRepository repoc = new ComandaDBRepository();
+        Service service = new Service(repoa, repop,repoc);
         HBox userLayout = fxmlLoader.load();
         stage.setScene(new Scene(userLayout));
         StartController controller = fxmlLoader.getController();

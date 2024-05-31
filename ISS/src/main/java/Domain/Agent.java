@@ -1,20 +1,41 @@
 package Domain;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
-public class Agent extends Entity<Long>{
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+
+@Entity
+@Table( name = "agents" )
+public class Agent extends Domain.Entity<Long>{
     private String username;
     private String password;
-    private LocalDate dataNasterii;
-
-    public Agent(String username, String password, LocalDate dataNasterii) {
+    private String dataNasterii;
+    public Agent(){
+        id=0L;
+        username=password="default";
+        dataNasterii="";
+    }
+    public Agent(String username, String password, String dataNasterii) {
         this.username = username;
         this.password = password;
         this.dataNasterii = dataNasterii;
     }
+    @Id
+    @GeneratedValue(generator="increment")
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -23,6 +44,7 @@ public class Agent extends Entity<Long>{
         this.username = username;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -31,11 +53,12 @@ public class Agent extends Entity<Long>{
         this.password = password;
     }
 
-    public LocalDate getDataNasterii() {
+    @Column(name = "birthdate")
+    public String getDataNasterii() {
         return dataNasterii;
     }
 
-    public void setDataNasterii(LocalDate dataNasterii) {
+    public void setDataNasterii(String dataNasterii) {
         this.dataNasterii = dataNasterii;
     }
 
